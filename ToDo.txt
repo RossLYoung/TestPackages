@@ -1,0 +1,10 @@
+Get into git
+after sigining in with twitter, username is saving to email field - done
+after postig, return to previous comment (change next) - done
+adding multiple social accounts redirecting to wrong template (connections, email) done
+
+upvote comment
+
+Replace zinnia comments bit with include
+Package into reusable app
+spam protection

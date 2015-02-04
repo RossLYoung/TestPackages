@@ -1,0 +1,153 @@
+
+$font-colour: #a7a7a7;
+$show-comment-colour: #f0f0f0;
+
+#div_id_honeypot, .asteriskField{
+  display: none;
+}
+a:hover,a:focus, span:focus{
+  color: $font-colour;
+  text-decoration:none;
+}
+
+//why is
+.time-since{
+  color: darken($font-colour,10%);
+  font-size: 0.8em
+}
+
+
+.expand-collapse {
+   span{
+     :before{
+      vertical-align: middle;
+     }
+  vertical-align: middle;
+   }
+}
+
+//Parent sass for odd/even containers below
+.comment-container{
+  padding: 5px 5px 10px 20px;
+  margin-top: 5px;
+  border: solid #e0e0e0 1px;
+  @include border-radius(5px);
+
+  .comment {
+    padding-bottom: 10px;
+  }
+
+  .comment-top {
+    div{
+      display: inline;
+
+    }
+    .comment-username{
+      color: darken($font-colour,10%);
+      font-family: "Open Sans", sans-serif;
+      font-size: 1.2em;
+      padding: 15px 5px 0 10px;
+    }
+
+    .comment-link{
+      a{
+        color: darken($font-colour,10%);
+        font-size: 0.8em
+      }
+    }
+  }
+
+  .comment-text{
+      padding: 10px 5px 5px 10px;
+      margin-bottom: 0;
+      font-size: 1.15em;
+      font-family: "Open Sans", sans-serif;
+      color: darken($font-colour,25%);
+      overflow: auto;
+
+      p{margin-bottom: 0;}
+  }
+
+  .comment-form{
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    @include border-radius(5px);
+  }
+}
+
+
+
+  .comment-container-odd{
+    @extend .comment-container;
+    background-color: #ffffff;
+
+    .comment-odd{
+      @extend .comment;
+    }
+    .comment-form-odd{
+      @extend .comment-form;
+      background-color: $show-comment-colour;
+;
+    }
+  }
+
+  .comment-container-even{
+    @extend .comment-container;
+    background-color: rgb(247, 247, 248);
+
+    .comment-even{
+      @extend .comment;
+    }
+
+    .comment-form-even{
+      @extend .comment-form;
+      background-color: $show-comment-colour;
+    }
+  }
+
+.comment-avatar{
+  padding: 0;
+  img{
+    @include border-radius(30%);
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.control-label{
+  font-family: "Open Sans", sans-serif;
+  font-weight: bold;
+}
+
+// The comment/hide form display button....
+.show-comment{
+  font-family: "Open Sans", sans-serif;
+
+  color: $font-colour;
+  background-color: $show-comment-colour;
+  border: solid 2px #d3d3d3;
+  @include border-radius(5px);
+  padding: 0 5px;
+  min-width: 100px;
+  text-align: center;
+
+  .show-comment-text{
+    font-size: 1em;
+  }
+
+  .show-comment-icon{
+    font-size: 1.5em;
+    margin-bottom: -15px;
+  }
+
+  @include single-transition(all, 0.3s, ease, 0.1s);
+
+  &:hover{
+    color: lighten($font-colour, 80%);
+    background-color: darken($show-comment-colour, 15%);
+  }
+
+}
+
+

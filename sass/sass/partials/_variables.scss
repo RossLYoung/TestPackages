@@ -1,0 +1,57 @@
+
+$body-full-col-width: 12;
+
+$body-with-sidebar-col-width: 8.5;
+$sidebar-col-width: 3.5;
+
+
+$nav-background-color: #343434;                                          //1
+$nav-background-hover-color: lighten($nav-background-color, 5%);
+$nav-anchor-color: #ff1a17;                                              //2
+$nav-anchor-hover-color: lighten($nav-anchor-color, 30%);
+$nav-border-style: 1px solid darken($nav-background-color, 7%);
+
+$main-nav-height:66px;
+$main-nav-height-sm:46px;
+$top-nav-height: 47px;
+
+$nav-left-fixed-width: 110px;
+
+$nav-dropdown-border-color: #b1beb1;
+
+$nav-transition-duration: 0.15s;
+$nav-transition-delay: 0.05s;
+
+$body-background-colour: #A30B37;                                         //3
+$blog-background-colour: #DCDCDD;  //
+
+
+//$blog-sidebar-background-color: lighten($nav-background-color, 50%);
+$blog-sidebar-background-color: #DCDCDD;
+$blog-sidebar-panel-heading-color: lighten($nav-background-color, 20%);
+$blog-sidebar-panel-heading-font-family: 'Lobster', cursive;
+
+
+//homepage sections
+
+
+
+
+
+//
+$auth-background-color: #b4b4b4;
+$auth-border-color: darken($auth-background-color,15%);
+$auth-heading-color: $nav-background-color;
+$auth-heading-text-color: $nav-anchor-color;
+//$auth-heading-text-color: #f8f4ff;
+
+$auth-heading-font-family: 'Pacifico', cursive;
+
+
+//Font Awesome alternatives as some social classes are blocked by Adblock Plus
+.my-fa-twitter:before {
+  content: "\f099";
+}
+.my-fa-facebook:before {
+  content: "\f09a";
+}

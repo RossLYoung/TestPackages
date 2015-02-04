@@ -1,0 +1,67 @@
+//
+//html, body {
+//  height: 100%;
+//  width: 100%;
+//  padding: 0;
+//  margin: 0;
+//}
+
+
+.background-image {
+  background-color: $body-background-colour;
+  //background: url("/static/img/homepage/bg-sheltand.jpg") no-repeat center center fixed;
+  //background-size: cover;
+}
+
+.nav-wrapper{
+  @include make-row();
+}
+
+.body-wrapper{
+  @include make-row();
+
+  @media (min-width: $screen-lg-min){
+    padding-left: $nav-left-fixed-width;
+  }
+  //background-color: $body-background-colour;
+}
+
+.body-content{
+  @include make-sm-column($body-with-sidebar-col-width);
+  padding-left: 3%;
+  padding-right: 3%;
+
+    @media (max-width: $screen-sm-min){
+      padding-left: 0;
+      padding-right: 0;
+    }
+}
+
+.right-sidebar{
+  @include make-sm-column($sidebar-col-width);
+  background: $blog-sidebar-background-color;
+  min-height: 400px;
+  margin-top: 10px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  @include border-radius(5px);
+}
+
+.footer{
+  @include make-row();
+
+  .inner-footer{
+    @include make-xs-column(12)
+  }
+
+  @media (min-width: $screen-lg-min){
+    padding-left: $nav-left-fixed-width;
+  }
+}
+
+//@media (min-width: $screen-sm-min){
+//  //remove mobile expanded class when going larger (to close mobile nav when portrait to landscape on some devices)
+//  #mobile-nav .nav-contact {
+//    @extend .collapse;
+//  }
+//}

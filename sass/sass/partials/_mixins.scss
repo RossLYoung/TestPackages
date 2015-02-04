@@ -1,0 +1,109 @@
+
+@mixin nav-list($li-float,
+                $li-display,
+                $li-border-right,
+                $li-width,
+                $li-first-child-height,
+                $li-first-child-anchor-padding,
+                $li-border-bottom,
+                $anchor-padding,
+                $span-font-size,
+                $span-display) {
+  ul{
+    list-style: none;
+    padding: 0;
+    //line-height: $span-font-size;
+
+    li {
+      float: $li-float;
+      display: $li-display;
+      width: $li-width;
+      border-right: $li-border-right;
+      border-bottom: $li-border-bottom;
+      //@include single-transition(all, 0.3s, ease, 0.1s);
+
+      a {
+        display: block;
+        padding: $anchor-padding;
+        cursor: pointer;
+        text-decoration: none;
+        //font-size: $span-font-size;
+        color: $nav-anchor-color;
+        @include single-transition(all, $nav-transition-duration, ease, $nav-transition-delay);
+
+        span {
+          display: $span-display;
+          font-size: $span-font-size;
+          span{
+            display: $span-display;
+            font-size: 0.8em;
+          }
+        }
+
+        &:hover {
+          background-color: $nav-background-hover-color;
+          //a {color: $nav-anchor-hover-color;}
+        }
+
+        &:last-child{
+          border-right: 0;
+        }
+      }
+    }
+
+    li:first-child a {
+          padding: $li-first-child-anchor-padding;
+    }
+
+  }
+
+}
+
+
+
+
+
+@mixin plain-list($li-float,
+  $li-display,
+  $li-border-right,
+  $li-width,
+  $li-border-bottom,
+  $anchor-padding) {
+  ul{
+    list-style: none;
+    padding: 0;
+
+    li {
+      float: $li-float;
+      display: $li-display;
+      width: $li-width;
+      border-right: $li-border-right;
+      border-bottom: $li-border-bottom;
+      //@include single-transition(all, 0.3s, ease, 0.1s);
+
+      a {
+        display: block;
+        padding: $anchor-padding;
+        cursor: pointer;
+        text-decoration: none;
+        color: $nav-anchor-color;
+        //@include single-transition(color, 0.3s, ease, 0.1s);
+
+        //span {
+        //  display: block;
+        //  font-size: $span-font-size;
+      }
+    }
+
+    //&:hover {
+    //  background-color: $nav-background-hover-color;
+    //  a {color: $nav-anchor-hover-color;}
+    //}
+
+    &:last-child{
+      border-right: 0;
+      padding-right: 0;
+    }
+  }
+}
+

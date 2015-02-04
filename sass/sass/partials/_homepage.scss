@@ -1,0 +1,39 @@
+.section{
+
+  padding: 100px;
+
+  .section-row{
+    @include make-row();
+  }
+}
+
+
+.section-0{
+  background-color: #FFB20F;
+}
+.section-1 {
+  background: url("/static/img/homepage/bg-sheltand.jpg") no-repeat center center ;
+
+  .section-map-left{
+    background-color: rgba(#d1bbff,0.5)
+    //padding: 20px 0;
+   // margin: 20px;
+  }
+  .section-map-right{
+    background-color: #d1bbff;
+    //padding: 20px 0;
+    //margin: 20px;
+  }
+
+}
+
+
+
+.section-2{
+  background-color: #4A001F;
+}
+
+
+#map-homepage {
+  height: 350px;
+}

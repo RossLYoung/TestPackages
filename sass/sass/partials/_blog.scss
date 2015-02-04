@@ -1,0 +1,39 @@
+
+#blog-container{
+  background-color: $blog-background-colour;
+  padding-right: 5%;
+  padding-left: 5%;
+
+
+  pre{
+    padding: 5px;
+    background-color: $body-background-colour;
+  }
+}
+
+.right-sidebar{
+  .panel-heading{
+    background-color: $blog-sidebar-panel-heading-color;
+    color: $nav-anchor-color;
+    font-family: $blog-sidebar-panel-heading-font-family;
+  }
+
+  li {
+    list-style: none;
+  }
+}
+
+.hentry{
+  .entry-title{
+    font-size: 4em;
+    font-family: 'Cinzel Decorative', cursive;  }
+  .entry-info{
+    font-size: 40%;
+  }
+  .entry-last-update{
+    font-size: 40%;
+
+  }
+}
+
+

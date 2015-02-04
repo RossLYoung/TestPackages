@@ -1,0 +1,252 @@
+.top-nav{
+  @include make-row();
+  @extend .hidden-xs;
+
+
+  border-bottom: $nav-border-style;
+
+  @media (min-width: $screen-lg-min){
+    padding-left: $nav-left-fixed-width;
+  }
+
+  .search-form{
+    @include make-sm-column(4);
+
+    padding-right: 0px;
+
+    height: $top-nav-height;
+    background: $nav-background-color;
+
+    .input-group-btn{
+      width: 1%; //width auto problem for form-group .input-group - arrived with bootstrap 3.1.1
+    }
+    @media (min-width: $screen-lg-min){
+      padding-left: 0;
+    }
+  }
+
+  .nav-contact{
+    @include make-sm-column(8);
+    height: $top-nav-height;
+    background: $nav-background-color;
+
+    @include nav-list($li-float: left,
+                      $li-display: inline-block,
+                      $li-border-right: $nav-border-style,
+                      $li-width: 20%,
+                      $li-first-child-height: $top-nav-height,
+                      $li-first-child-anchor-padding: 9px 0,
+                      $li-border-bottom: 0,
+                      $anchor-padding: 9px 0,
+                      $span-font-size: 1.8em,
+                      $span-display: block
+
+    );
+
+    li:last-child{
+      a{
+        padding: 0px 10px 2px 10px;
+      }
+      button{
+        padding: 2px 5px;
+      }
+    }
+  }
+}
+
+
+
+.main-nav{
+  background: $nav-background-color;
+
+  position: relative;
+  width: 100%;
+  height: $main-nav-height;
+  border-bottom: $nav-border-style;
+  overflow: hidden;
+
+  a{
+    font-size: 1.2em; //Allows icon and text to have different sizes
+
+    span{
+      //margin-bottom: -2px; // gap between main nav icon and text
+    }
+  }
+
+  //On Top - inner span ratio is hard-coded in mixin
+  @include nav-list($li-float: left,
+                    $li-display: inline-block,
+                    $li-border-right: $nav-border-style,
+                    $li-width: 14.28%,
+                    $li-first-child-height: $main-nav-height,
+                    $li-first-child-anchor-padding: 21px 0px,
+                    $li-border-bottom: $nav-border-style,
+                    $anchor-padding: 12px 0,
+                    $span-font-size: 1.2em,  //inherits nav-header a above - change that instead
+                    $span-display: block
+
+
+
+  );
+
+  @media (max-width: $screen-sm-min){
+    height: $main-nav-height-sm;
+  }
+
+  //Down the left
+  @media (min-width: $screen-lg-min){
+
+    height: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: $nav-left-fixed-width;
+    padding: 0;
+
+    @include nav-list($li-float: left,
+                      $li-display: inline-block,
+                      $li-border-right: 0,
+                      $li-width :$nav-left-fixed-width,
+                      $li-first-child-height: $top-nav-height,
+                      $li-first-child-anchor-padding: 12px 0px,
+                      $li-border-bottom: $nav-border-style,
+                      $anchor-padding: 15px 0,
+                      $span-font-size: 1.2em,
+                      $span-display: block
+    );
+  }
+
+  .navbar-header{
+    a{
+      color: $nav-anchor-color;
+      padding: 7px 15px;
+      @include single-transition(color,0.3s, ease, 0.1s);
+      #mobile-nav-collapse{
+        font-size: 2.0em;
+      }
+    }
+    a:hover{
+      color: $nav-anchor-hover-color;
+    }
+  }
+}
+
+
+
+#mobile-nav{
+
+  > ul{
+    margin-bottom: 0;
+  }
+  line-height: 0.8;
+
+  div{
+    padding-left: 0;
+    padding-right: 0;
+    &:first-child{
+      border-right: $nav-border-style;
+    }
+  }
+
+  background: $nav-background-color;
+
+  @include nav-list($li-float: none,
+                    $li-display: inline-block,
+                    $li-border-right: $nav-border-style,
+                    $li-width: 100%,
+                    $li-first-child-height: $top-nav-height,
+                    $li-first-child-anchor-padding: 10px 0,
+                    $li-border-bottom: $nav-border-style,
+                    $anchor-padding: 10px 0,
+                    $span-font-size: 1.1em,
+                    $span-display: inline-block
+  );
+
+
+
+  .nav-contact{
+    //@include make-sm-column(4);
+    height: $top-nav-height;
+    background: $nav-background-color;
+    padding: 0;
+    line-height: 0.8;
+
+    @include nav-list($li-float: left,
+                      $li-display: inline-block,
+                      $li-border-right: $nav-border-style,
+                      $li-width: 25%,
+                      $li-first-child-height: $top-nav-height,
+                      $li-first-child-anchor-padding: 11px 0,
+                      $li-border-bottom: none,
+                      $anchor-padding: 11px 0,
+                      $span-font-size: 1.6em,
+                      $span-display: block
+    );
+
+    li:last-child{
+//      a{
+//        padding: 10px 10px 6px 10px;
+//      }
+//      button{
+//        padding: 2px 5px;
+//      }
+      border-right: none;
+
+    }
+  }
+}
+
+
+//still not working properly
+.nav-auth-button{
+  background-color: $nav-anchor-color;
+  color: #ffffff;
+  @include single-transition(all,0.3s, ease, 0.1s);
+}
+
+
+
+#nav-login-buttons{
+  a{
+    font-size: 0.5em;
+    display: inline-block;
+    border: 2px solid #b1beb1;
+    margin-top: 8px;
+    padding: 5px 6px;
+    @include border-radius(5px);
+  }
+}
+
+#nav-logged-in-button-a{
+  min-width: 120px;
+}
+
+#nav-auth-dropdown{
+  position: fixed;
+  top: 39px;
+  right: 1px;
+  z-index: 100;
+
+  background-color: $nav-background-color;
+  border: 2px solid $nav-dropdown-border-color;
+  margin-top: 8px;
+  padding: 10px 10px;
+  @include border-radius(5px);
+
+  a{color: $nav-anchor-color;}
+
+
+}
+
+.triangle-up {
+	width:  0;
+	height: 0;
+	border-left:   50px solid transparent;
+	border-right:  50px solid transparent;
+	border-bottom: 100px solid $nav-dropdown-border-color;
+}
+
+#auth-button-triangle{
+  display: none;
+  margin:  auto;
+}

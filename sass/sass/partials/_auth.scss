@@ -1,0 +1,119 @@
+.allauth-container{
+
+  //jeebus
+  img{
+    margin: auto;
+    display: block;
+    width: 100%;
+    @include border-radius(15px);
+  }
+
+  margin-top: 5%;
+  padding: 0px !important;
+  background-color: $auth-background-color;
+  border: 1px $auth-border-color solid;
+
+
+  @include make-sm-column(6);
+  @include make-sm-column-offset(3);
+
+  @include make-lg-column(5);
+  @include make-lg-column-offset(3.5);
+
+  @include border-radius(10px);
+  @include opacity(0.90);
+
+  .auth-heading{
+    background-color: $auth-heading-color;
+    color: $auth-heading-text-color;
+    font-family: $auth-heading-font-family;
+    //padding-bottom: 20px;
+    padding: 10px 10px 10px 10px;
+    @include border-top-radius(10px);
+
+    h2{
+      text-align: center;
+    }
+  }
+
+  .auth-content{
+    padding: 15px 5%;
+  }
+
+  h1{
+    margin-top: 10px;
+    text-align: center;
+  }
+}
+
+.socialaccount_ballot{
+    @include plain-list($li-float: left,
+                        $li-display: inline-block,
+                        $li-border-right: none,
+                        $li-width: 33%,
+                        $li-border-bottom: none,
+                        $anchor-padding: 5px 5px);
+
+    li{
+      padding-right: 5px;
+
+      &:last-child{
+        padding-right: 0;
+      }
+      a{margin: auto}
+    }
+}
+
+//.socialaccount_providers{
+//    margin-left:  -10px;
+//    margin-right: -10px;
+//}
+
+.socialaccount_provider{
+  font-family: FontAwesome;
+  text-align: center;
+  font-size: 1.2em;
+
+
+  @include border-radius(5px);
+
+        &:hover{
+        @include box-shadow(1px 1px 2px rgba(0,0,0,.7));
+      }
+}
+
+.socialaccount_provider.my-twitter {
+  background: #1e92ff;
+  color: #fff;
+}
+.socialaccount_provider.my-twitter:before {
+  content: "\f081";
+}
+.socialaccount_provider.my-facebook {
+  background: #4B67A3;
+  color: #fff;
+}
+.socialaccount_provider.my-facebook:before {
+  content: "\f082";
+}
+.socialaccount_provider.my-google {
+  background: #DE4931;
+  color: #fff;
+}
+.socialaccount_provider.my-google:before {
+  content: "\f0d4";
+}
+
+.login-or{
+  padding: 10px 0;
+}
+
+//remember password checkbox floated to allow 'forgot password' to align - may have to re-think
+//#div_id_remember{
+//  float: left;
+//  margin-top: -40px;
+//}
+
+#forgotten-password{
+    margin-top: -42px;
+}

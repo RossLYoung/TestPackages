@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>To-Do lists</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,700|Cinzel+Decorative:400,700|Luckiest+Guy' rel='stylesheet' type='text/css'>
+    <link href="/static/css/styles.css" rel="stylesheet" media="screen">
+
+    {% block extra_css %}
+    {% endblock extra_css %}
+</head>
+
+<title>To-Do</title>
+
+<body>
+{% block nav %}
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-static-top navbar-shadow" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{% url 'user_home' %}">Demo Members Area</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'user_home' %}">Home</a></li>
+            <li><a href="{% url 'user_action' %}">Action</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <strong> {{ user.display_name }}</strong> <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header">Account</li>
+                <li><a href="{% url 'account_profile' %}"><i class="fa fa-cog"></i> Settings</a></li>
+                <li><a href="{% url 'settings_emails' %}"><i class="fa fa-envelope"></i> Email Addresses</a></li>
+                <li><a href="{% url 'settings_social' %}"><i class="fa fa-facebook"></i> Social Networks</a></li>
+                <li><a href="{% url 'settings_password' %}"><i class="fa fa-lock"></i> Change Password</a></li>
+                <li class="divider"></li>
+                <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Sign Out</a></li>
+              </ul>
+            </li>
+            <li>{% if user.profile.avatar_url %}<img alt="" style="width:50px; height:50px" src="{{user.profile.avatar_url}}">{% endif %}</li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3 jumbotron">
+            {% block login_block %}
+            {% endblock login_block %}
+
+            <div><a  class="btn btn-primary" href="{% url 'account_login' %}">login</a>
+            <a  class="btn btn-primary" href="{% url 'account_logout' %}">logout</a>
+            <a class="btn btn-primary" href="{% url 'account_signup' %}">sign up</a>
+            </div>
+            <div>
+            <a class="btn btn-primary" href="{% url 'account_profile' %}">Settings</a>
+            <a class="btn btn-primary" href="{% url 'settings_emails' %}">email accounts</a>
+            <a class="btn btn-primary" href="{% url 'settings_social' %}">social</a>
+            <a class="btn btn-primary" href="{% url 'settings_password' %}">change password</a>
+            </div>
+            <div>
+            <a class="btn btn-primary" href="{% url 'viz-home' %}">viz</a>
+            <a class="btn btn-primary" href="{% url 'viz-projects' %}">viz projects</a>
+            </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert{% if message.tags %}
+                                alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}{% endif %} alert-dismissable">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&#215;</button>
+                        {{ message|safe }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            </div>
+{#            <a>#}
+{#                <ul class="dropdown-menu">#}
+{#                    <li class="dropdown-header">Account</li>#}
+{#                    <li><a href=""><i class="fa fa-cog"></i> Settings</a></li>#}
+{#                    <li><a href="{% url 'account_email' %}"><i class="fa fa-envelope"></i> Email Addresses</a></li>#}
+{#                    <li><a href="{% url 'socialaccount_connections' %}"><i class="fa fa-facebook"></i> Social Networks</a></li>#}
+{#                    <li><a href="{% url 'account_change_password' %}"><i class="fa fa-lock"></i> Change Password</a></li>#}
+{#                    <li class="divider"></li>#}
+{#                    <li><a href="{% url 'account_logout' %}"><i class="fa fa-sign-out"></i> Sign Out</a></li>#}
+{#                </ul>#}
+{#            </a>#}
+
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="">
+                {% block body %}
+
+                {% endblock body%}
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+
+        </div>
+    </div>
+
+</div>
+</body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="/static/js/site.js"></script>
+
+    {% block extra_js %}
+    {% endblock extra_js %}
+
+</html>

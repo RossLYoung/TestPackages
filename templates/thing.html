@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block body %}
+
+    <h1>A single thing</h1>
+    {{ thing.name| upper }}
+
+    {% get_comment_count for thing as comment_count %}
+    <p>{{ comment_count }} comment{{ comment_count|pluralize }}</p>
+
+
+    {% with thing as object %}
+        {% include "comments/_comments.html" %}
+    {% endwith %}
+
+
+
+{##}
+{#    {% render_comment_list for thing %}#}
+{##}
+{#    {% render_comment_form for thing %}#}
+
+{% endblock body %}
+
+

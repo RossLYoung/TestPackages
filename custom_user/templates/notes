@@ -1,0 +1,3 @@
+/socialaccount/connections.html and /account/email.html are duplicated in the settings dir
+
+These views are treated as user settings pages, rather than an all-auth flow.
