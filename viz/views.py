@@ -13,7 +13,7 @@ def index(request):
     #return TemplateResponse(request, '.base.html')
 
 def projects(request):
-    print(timeit.timeit(serializers.serialize("json", Donation.objects.all()[:300]), number=1))
+    #print(timeit.timeit(serializers.serialize("json", Donation.objects.all()[:300]), number=1))
     projects = serializers.serialize("json", Donation.objects.all()[:300])
 
     #print(sys.getsizeof(projects));

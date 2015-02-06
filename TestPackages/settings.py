@@ -51,7 +51,7 @@ INSTALLED_APPS = (
     'viz',
     'django_extensions',
 
-    'csvimport',
+    #'csvimport',
 )
 
 INSTALLED_APPS += (

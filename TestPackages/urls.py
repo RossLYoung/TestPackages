@@ -4,6 +4,7 @@ from django.contrib import admin
 urlpatterns = patterns('',
     url(r'^$',             'commentry.views.home',  name='home'),
     url(r'^thing/(\d+)/$', 'commentry.views.thing', name='thing'),
+    url(r'^thing/(\d+)/(thiswillbeavariable/?)$', 'commentry.views.thing', name='thingy'),
 
     url(r'^comments/', include('django_comments.urls')),
     url(r'^accounts/', include('allauth.urls')),
