@@ -9,31 +9,18 @@ function makeGraphs(error, projectsJson, statesJson) {
     //Clean projectsJson data
     var donorschooseProjects = JSON.parse(projectsJson);
     var dateFormat = d3.time.format("%Y-%m-%d");
-    var donation_json;
     var fields;
-
-
+    var datePosted;
 
     for (var i = 0, len = donorschooseProjects.length; i < len; i++) {
-        //donation_json = donorschooseProjects[i];
-        donation_json = donorschooseProjects[i];
-        fields = donation_json['fields'];
-        fields["date_posted"] = dateFormat.parse(fields["date_posted"]);
-        fields["date_posted"].setDate(1);
-        fields["total_donations"] = +donation_json['fields']["total_donations"];
-
-        //donorschooseProjects[i]['fields']["date_posted"] = dateFormat.parse(donation_json['fields']["date_posted"]);
-        //donorschooseProjects[i]['fields']["date_posted"].setDate(1);
-        //donorschooseProjects[i]['fields']["total_donations"] = +donation_json['fields']["total_donations"];
+        fields = donorschooseProjects[i]['fields'];
+        datePosted = fields["date_posted"];
+        datePosted = dateFormat.parse(datePosted);
+        datePosted.setDate(1);
+        fields["date_posted"] = datePosted;
+        fields["total_donations"] = +fields["total_donations"];
+        donorschooseProjects[i]['fields'] = fields;
     }
-
-    //_(donorschooseProjects).forEach(function(donation_json){
-    //    donation_json['fields']["date_posted"] = dateFormat.parse(donation_json['fields']["date_posted"]);
-    //    donation_json['fields']["date_posted"].setDate(1);
-    //    donation_json['fields']["total_donations"] = +donation_json['fields']["total_donations"];
-    //
-    //});
-
 
     //Create a Crossfilter instance
     var ndx = crossfilter(donorschooseProjects);
@@ -64,7 +51,6 @@ function makeGraphs(error, projectsJson, statesJson) {
     var maxDate = dateDim.top(1)[0]['fields']["date_posted"];
 
     //Charts
-
     var timeChart = dc.barChart("#time-chart");
     var resourceTypeChart = dc.rowChart("#resource-type-row-chart");
     var povertyLevelChart = dc.rowChart("#poverty-level-row-chart");
@@ -83,35 +69,47 @@ function makeGraphs(error, projectsJson, statesJson) {
         .group(totalDonations)
         .formatNumber(d3.format(".3s"));
 
+    var timeElement = document.getElementById("time-chart").parentElement;//'time-chart-container');
     timeChart
-        .width(600)
-        .height(160)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .width(timeElement.clientWidth)
+        //.height(element.clientHeight)
+        //.margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(dateDim)
         .group(numProjectsByDate)
         .transitionDuration(500)
         .x(d3.time.scale().domain([minDate, maxDate]))
         .elasticY(true)
         .xAxisLabel("Year")
-        .yAxis().ticks(4);
+        .elasticX(true)
+        .yAxis().ticks(4)
 
+    timeChart.xAxis().ticks( Math.floor(timeElement.clientWidth/50) );//This has to be separate as 'ticks()' is fucky (doesn't return the object)
+
+
+    var resElement = document.getElementById('resource-type-row-chart').parentElement;//''res-chart-container');
     resourceTypeChart
-        .width(300)
-        .height(250)
+        .width(resElement.clientWidth)
+        //.height(250)
         .dimension(resourceTypeDim)
         .group(numProjectsByResourceType)
+        .elasticX(true)
         .xAxis().ticks(4);
 
+
+
+    var povElement = document.getElementById('poverty-level-row-chart').parentElement;// 'pov-chart-container');
     povertyLevelChart
-        .width(300)
+        .width(povElement.clientWidth)
         .height(250)
         .dimension(povertyLevelDim)
         .group(numProjectsByPovertyLevel)
-        .xAxis().ticks(4);
+        .elasticX(true)
+        .xAxis().ticks(2);
 
-
-    usChart.width(1000)
-        .height(330)
+    var mapElement = document.getElementById('map-chart-container');
+    usChart
+        .width(mapElement.clientWidth)
+        .height(350)
         .dimension(stateDim)
         .group(totalDonationsByState)
         .colors(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#0061B5"])
@@ -121,7 +119,7 @@ function makeGraphs(error, projectsJson, statesJson) {
         })
         .projection(d3.geo.albersUsa()
                     .scale(600)
-                    .translate([340, 150]))
+                    .translate([mapElement.clientWidth/2, mapElement.clientHeight/2]))
         .title(function (p) {
             return "State: " + p["key"]
                     + "\n"
@@ -129,4 +127,69 @@ function makeGraphs(error, projectsJson, statesJson) {
         });
 
     dc.renderAll();
+
+    resize_monitor.addListener( function(){
+        timeChart.width( timeElement.clientWidth ).xAxis().ticks( Math.floor(timeElement.clientWidth/50) );
+        resourceTypeChart.width( resElement.clientWidth ).xAxis().ticks(  Math.floor(resElement.clientWidth/35) );
+        povertyLevelChart.width( povElement.clientWidth).xAxis().ticks(  Math.floor(povElement.clientWidth/50) );
+    });
 }
+
+//var DC_Resizer = function(){
+//   var timer = null;
+//    var resize = function(){
+//        var stages = document.getElementsByClassName("chart-stage");
+//        var stage = null;
+//        for( var i= 0,len=stages.length; i<len; i++ ){
+//            stage = stages[i];
+//            stage.children[0].children[0].setAttribute('width',stage.clientWidth);//width(stage.clientWidth);
+//        }
+//        //dc.redrawAll();
+//        dc.renderAll();
+//        //dc.rescale();
+//        timer = null;
+//    };
+//    var doresize = function(){
+//        if( timer !== null ){
+//            clearTimeout(timer);
+//        }
+//        timer = setTimeout(resize,100);
+//    };
+//    window.onresize = doresize;
+//    window.addEventListener('load', function(){
+//        resize();
+//    });
+//    return this;
+//}();
+
+var resize_monitor = function(){
+    var listeners = [];
+    var timer = null;
+    var callListeners = function(){
+        for(var l in listeners){
+            listeners[l]();
+        }
+        dc.renderAll();
+        timer = null;
+    };
+    var doresize = function(){
+        if( timer !== null ){
+            clearTimeout(timer);
+        }
+        timer = setTimeout(callListeners,333);
+    };
+    window.onresize = doresize;
+    return {
+        addListener:function(listener){
+            for(var l in listeners){
+                if(listeners[l]==listener){
+                    return;
+                }
+            }
+            listeners.push(listener);
+        },
+        removeListener:function(index){
+            //TODO: splice array at index
+        }
+    };
+}();
