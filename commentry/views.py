@@ -13,6 +13,6 @@ def home(request):
     return render(request, 'home.html',{'things': things_})
 
 
-def thing(request, thing_id):
+def thing(request, thing_id, fucking_var):
     thing_ = Thing.objects.get(id=thing_id)
     return render(request, 'thing.html', {'thing': thing_})

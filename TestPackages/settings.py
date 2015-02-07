@@ -1,35 +1,18 @@
-"""
-Django settings for TestPackages project.
 
-For more information on this file, see
-https://docs.djangoproject.com/en/1.7/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.7/ref/settings/
-"""
-
-# Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+from os.path  import join
+
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+PROJECT_DIR = os.path.dirname(__file__)
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '0ap=hvx5h&-p9m-$$@4512&z^#@ptkv$+x15(y$gye^h*l6=*3'
 
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
-
-
-# Application definition
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -52,6 +35,8 @@ INSTALLED_APPS = (
     'django_extensions',
 
     'csvimport',
+
+    'products',
 )
 
 INSTALLED_APPS += (
@@ -161,29 +146,45 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
-
 TEMPLATE_DIRS = (
         os.path.join(BASE_DIR, '', 'custom_user', 'templates'),
+        os.path.join(BASE_DIR, '', 'products', 'templates'),
         os.path.join(BASE_DIR, '', 'templates', 'viz'),
         os.path.join(BASE_DIR, '', 'templates', 'allauth'),
         os.path.join(BASE_DIR,  'templates'),
 )
 
-
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-
 )
-
 
 SITE_ID = 1
 
+######################################################################
+########## STATIC FILE CONFIGURATION #################################
+######################################################################
+
+STATIC_ROOT = join(BASE_DIR,'static')
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "site_wide_static"),)
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+)
+########## END STATIC FILE CONFIGURATION
+
+######################################################################
+########## MEDIA CONFIGURATION #######################################
+######################################################################
+
+MEDIA_ROOT = join(BASE_DIR,  "site_wide_static", 'media')
+
+MEDIA_URL = '/media/'
+########## END MEDIA CONFIGURATION
 
 ######################################################################
 ########## DJANGO DEBUG TOOLBAR CONFIGURATION ########################

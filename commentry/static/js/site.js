@@ -1,5 +1,5 @@
 
-$( document ).ready(function() {
+$(document).ready(function() {
 
     //////////////////////////////////////////////////////////
     var all_comment_toggles = $('[id^=show-comment-]');

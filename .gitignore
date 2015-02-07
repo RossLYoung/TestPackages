@@ -1,5 +1,9 @@
 # Created by .gitignore support plugin (hsz.mobi)
+.idea
 sass/.sass-cache
 viz/static/opendata_projects.csv
 .ipynb_checkpoints
 db.sqlite3
+products/images
+.ToDo.txt.kate-swp
+site_wide_static

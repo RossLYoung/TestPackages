@@ -56,7 +56,7 @@
 
 {% endblock %}
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 jumbotron">
@@ -107,12 +107,10 @@
     </div>
 
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="">
+        <div class="col-md-12">
                 {% block body %}
 
                 {% endblock body%}
-            </div>
         </div>
     </div>
 
@@ -125,9 +123,9 @@
 </div>
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="/static/js/site.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="/static/js/site.js"></script>
 
     {% block extra_js %}
     {% endblock extra_js %}

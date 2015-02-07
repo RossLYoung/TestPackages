@@ -1,0 +1,25 @@
+{% extends 'products/base.html' %}
+
+
+{% block body %}
+
+    {{ block.super }}
+
+    <h1>Detail</h1>
+
+    <div class="row">
+        {% if Product %}
+            <div class="col-xs-6">
+                <div>
+                    {{ Product.title }}
+                </div>
+                {% for image in Product.productimage_set.all %}
+                    <div>
+                        <img class="img-responsive" src="{{ MEDIA_URL }}{{ image.image }}">
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock body %}
