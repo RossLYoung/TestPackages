@@ -5,4 +5,5 @@ urlpatterns = patterns('',
     url(r'^$',         'viz.views.index',  name='viz-home'),
     url(r'^projects/$', 'viz.views.projects', name='viz-projects'),
 
+
 )

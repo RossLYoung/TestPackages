@@ -49,11 +49,15 @@ INSTALLED_APPS = (
     'commentry',
 
     'viz',
+    'threed',
     'django_extensions',
+
+
 
     #'csvimport',
 )
 
+#TODO: Ask Ross why appending to tuple?
 INSTALLED_APPS += (
     'allauth',
     'allauth.account',
@@ -168,10 +172,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 TEMPLATE_DIRS = (
-        os.path.join(BASE_DIR, '', 'custom_user', 'templates'),
-        os.path.join(BASE_DIR, '', 'templates', 'viz'),
-        os.path.join(BASE_DIR, '', 'templates', 'allauth'),
-        os.path.join(BASE_DIR,  'templates'),
+        os.path.join(BASE_DIR, 'custom_user', 'templates'),
+        os.path.join(BASE_DIR, 'templates', 'viz'),
+        os.path.join(BASE_DIR, 'templates', 'threed'),
+        os.path.join(BASE_DIR, 'templates', 'allauth'),
+        os.path.join(BASE_DIR, 'templates'),
 )
 
 
@@ -189,7 +194,7 @@ SITE_ID = 1
 ########## DJANGO DEBUG TOOLBAR CONFIGURATION ########################
 ######################################################################
 
-MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ('debug_toolbar.middleware.DebugToolbarMiddleware',
+MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',
                                                   'django.contrib.admindocs.middleware.XViewMiddleware',
                                                   'debugtools.middleware.XViewMiddleware',
 )

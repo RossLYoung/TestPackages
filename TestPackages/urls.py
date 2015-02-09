@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     url(r'^comments/', include('django_comments.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^settings/', include('custom_user.urls')),
-        url(r'^viz/', include('viz.urls')),
+    url(r'^viz/', include('viz.urls')),
 
-
+    url(r'^threed/', include('threed.urls')),
 
     url(r'^member/$', 'custom_user.views.member_index', name='user_home'),
     url(r'^member/action$', 'custom_user.views.member_action', name='user_action'),

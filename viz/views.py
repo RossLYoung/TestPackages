@@ -7,6 +7,8 @@ from django.template.response import TemplateResponse
 from viz.models import Donation
 import timeit
 
+import pandatest
+
 # Create your views here.
 def index(request):
     return render(request,'viz/index.html')
@@ -14,6 +16,7 @@ def index(request):
 
 def projects(request):
     #print(timeit.timeit(serializers.serialize("json", Donation.objects.all()[:300]), number=1))
+
     projects = serializers.serialize("json", Donation.objects.all()[:300])
 
     #print(sys.getsizeof(projects));
