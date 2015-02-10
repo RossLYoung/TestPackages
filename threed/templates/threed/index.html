@@ -1,10 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% block body %}
-    {% block extra_css %}
+
+{% block extra_css %}
 {#        <link rel="stylesheet" href="{% static 'css/keen-dashboards.css' %}">#}
-        <link rel="stylesheet" href="{% static 'css/threed.css' %}">
-    {% endblock extra_css %}
+    <link rel="stylesheet" href="{% static 'css/threed.css' %}">
+{% endblock extra_css %}
+
+{% block body %}
+
 
     <div class="container">
         <div class="row">
@@ -14,10 +17,12 @@
         </div>
     </div>
 
-    {% block extra_js %}
-        <script src="{% static 'js/three.js' %}"></script>
-        <script src="{% static 'js/threed.js' %}"></script>
+
+{% endblock body%}
+
+{% block extra_js %}
+    <script src="{% static 'js/three.js' %}"></script>
+    <script src="{% static 'js/threed.js' %}"></script>
 
 {#        <script src="{% static 'js/ddsviewer.js'          %}"></script>#}
-    {% endblock extra_js %}
-{% endblock body%}
+{% endblock extra_js %}

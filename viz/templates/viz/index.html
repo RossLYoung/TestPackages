@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
-{% block body %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/keen-dashboards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dc.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_css %}
 
-    {% block extra_css %}
-        <link rel="stylesheet" href="{% static 'css/keen-dashboards.css' %}">
-        <link rel="stylesheet" href="{% static 'css/dc.css' %}">
-        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    {% endblock extra_css %}
+{% block body %}
 
     <div class="application">
 
@@ -139,15 +139,15 @@
 
     </div>
 
-    {% block extra_js %}
-        <script src="{% static 'js/lib/lodash.js' %}"></script>
-
-        <script src="{% static 'js/lib/crossfilter.js' %}"></script>
-        <script src="{% static 'js/lib/d3.js'          %}"></script>
-        <script src="{% static 'js/lib/dc.js'          %}"></script>
-        <script src="{% static 'js/lib/queue.js'       %}"></script>
-        <script src="{% static 'js/lib/keen.js'        %}"></script>
-        <script src="{% static 'js/charts.js'          %}"></script>
-    {% endblock extra_js %}
-
 {% endblock body %}
+
+{% block extra_js %}
+    <script src="{% static 'js/lib/lodash.js' %}"></script>
+
+    <script src="{% static 'js/lib/crossfilter.js' %}"></script>
+    <script src="{% static 'js/lib/d3.js'          %}"></script>
+    <script src="{% static 'js/lib/dc.js'          %}"></script>
+    <script src="{% static 'js/lib/queue.js'       %}"></script>
+    <script src="{% static 'js/lib/keen.js'        %}"></script>
+    <script src="{% static 'js/charts.js'          %}"></script>
+{% endblock extra_js %}
