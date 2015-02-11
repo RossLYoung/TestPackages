@@ -20,6 +20,29 @@
         </div>
 
         <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3 chart-tools-groups">
+
+                </div>
+                <div class="col-md-3 chart-tools-filters">
+
+                </div>
+                <div class="col-md-6 chart-tools">
+                    <form class="chart-tools-form" id="chart-tools">
+                        <div class="chart-tools-dimension">
+                            <select id="chart-tools-dim-select">
+                                <optgroup label="Dimension" id="chart-tools-dimension-opts">
+
+                                </optgroup>
+                            </select>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid">
 
             <div class="row">
 
@@ -74,7 +97,7 @@
                         <div class="chart-title">
                             Distribution of Donations
                         </div>
-                        <div class="chart-stage">
+                        <div class="chart-stage" id="map-chart-container">
                             <div id="us-chart"></div>
                         </div>
                     </div>
