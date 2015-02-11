@@ -183,7 +183,6 @@ TEMPLATE_DIRS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-
 )
 
 
@@ -235,4 +234,5 @@ DISABLE_PANELS = set(['debug_toolbar.panels.redirects.RedirectsPanel'])
 
 ########## end django-debug-toolbar
 
-
+STATICFILES_FINDERS	= ('django.contrib.staticfiles.finders.FileSystemFinder',
+                       'django.contrib.staticfiles.finders.AppDirectoriesFinder')

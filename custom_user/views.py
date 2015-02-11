@@ -66,10 +66,13 @@ class SettingsEmail(EmailView):
     template_name = 'settings/email.html'
     success_url = reverse_lazy('settings_emails')
 
+import os
+
 
 class SettingsSocial(ConnectionsView):
     template_name = 'settings/connections.html'
     print('social, yo')
+    print(os.getpid())
     success_url = reverse_lazy('settings_social')
 
 
