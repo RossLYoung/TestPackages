@@ -1,0 +1,24 @@
+{% verbatim %}
+<div class="col-md-6 chart-tools">
+    <div ng-controller="DimensionController" id="dim-controller">
+        <select ng-model="selectedDim">
+            <option ng-repeat="dim in dimensions" >{{ dim.name }}</option>
+        </select>
+        <div>
+            Filters<br />
+            <div ng-repeat="filter in filters">{{ filter }}</div>
+        </div>
+        <div>
+            <a href="" ng-click="addGroup()">Groups</a>
+            <div ng-repeat="group in groups">{{ group.name }}</div>
+        </div>
+        <form>
+            <input type="submit" ng-click="addChart()">
+        </form>
+    </div>
+
+</div>
+<div class="col-md-6 charts">
+    <ng-charts></ng-charts>
+</div>
+{% endverbatim %}

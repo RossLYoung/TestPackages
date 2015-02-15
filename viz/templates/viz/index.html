@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/keen-dashboards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dc.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_css %}
+
 {% block body %}
 
-    {% block extra_css %}
-        <link rel="stylesheet" href="{% static 'css/keen-dashboards.css' %}">
-        <link rel="stylesheet" href="{% static 'css/dc.css' %}">
-        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
-    {% endblock extra_css %}
-
-    <div class="application">
+    <div class="application" ng-app="ChartTools">
 
         <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container-fluid">
@@ -21,24 +21,19 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3 chart-tools-groups">
-
-                </div>
-                <div class="col-md-3 chart-tools-filters">
-
-                </div>
-                <div class="col-md-6 chart-tools">
-                    <form class="chart-tools-form" id="chart-tools">
-                        <div class="chart-tools-dimension">
-                            <select id="chart-tools-dim-select">
-                                <optgroup label="Dimension" id="chart-tools-dimension-opts">
-
-                                </optgroup>
-                            </select>
-
-                        </div>
-                    </form>
-                </div>
+                {% include 'viz/tools.html' %}
+{#                <div class="col-md-6 chart-tools">#}
+{#                    <form class="chart-tools-form" id="chart-tools">#}
+{#                        <div class="chart-tools-dimension">#}
+{#                            <select id="chart-tools-dim-select">#}
+{#                                <optgroup label="Dimension" id="chart-tools-dimension-opts">#}
+{##}
+{#                                </optgroup>#}
+{#                            </select>#}
+{##}
+{#                        </div>#}
+{#                    </form>#}
+{#                </div>#}
             </div>
         </div>
 
@@ -139,15 +134,19 @@
 
     </div>
 
-    {% block extra_js %}
-        <script src="{% static 'js/lib/lodash.js' %}"></script>
 
-        <script src="{% static 'js/lib/crossfilter.js' %}"></script>
-        <script src="{% static 'js/lib/d3.js'          %}"></script>
-        <script src="{% static 'js/lib/dc.js'          %}"></script>
-        <script src="{% static 'js/lib/queue.js'       %}"></script>
-        <script src="{% static 'js/lib/keen.js'        %}"></script>
-        <script src="{% static 'js/charts.js'          %}"></script>
-    {% endblock extra_js %}
 
 {% endblock body %}
+
+{% block extra_js %}
+    <script src="{% static 'js/lib/lodash.js' %}"></script>
+
+    <script src="{% static 'js/lib/angular.js' %}"></script>
+
+    <script src="{% static 'js/lib/crossfilter.js' %}"></script>
+    <script src="{% static 'js/lib/d3.js'          %}"></script>
+    <script src="{% static 'js/lib/dc.js'          %}"></script>
+    <script src="{% static 'js/lib/queue.js'       %}"></script>
+    <script src="{% static 'js/lib/keen.js'        %}"></script>
+    <script src="{% static 'js/angular-charts.js'          %}"></script>
+{% endblock extra_js %}
